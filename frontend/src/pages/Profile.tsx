@@ -17,8 +17,8 @@ import {
 export const Profile: React.FC = () => {
   const [profile, setProfile] = useState<StudentProfile>(dataService.getProfile());
   const [stats, setStats] = useState(dataService.getProgressStats());
-  const [email, setEmail] = useState(profile.email);
-  const [phone, setPhone] = useState(profile.phone || '+91 98765 43210');
+  const [email, setEmail] = useState(profile.email || 'prajapatiherry.28@gmail.com');
+  const [phone, setPhone] = useState(profile.phone || '+91 7486865058');
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
