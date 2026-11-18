@@ -73,9 +73,14 @@
 ---
 
 ### ALA 2: Virtualization Using Virtual Machines or Containers
-- **Task Name:** Hypervisor Provisioning, Dual-VM Specification, and Isolation Audit
+- **Task Name:** Hypervisor Provisioning, Dual-VM Specification, and Linux Kernel Virtualization Lab (Cgroups & Namespaces)
 - **Status:** **Completed**
 - **Files Created / Modified:**
+  - `evidence/ALA-2/Virtualization_Lab_Report.pdf` (301 KB, 6-page comprehensive academic report with 7 terminal figures)
+  - `evidence/ALA-2/virtualization-lab.zip` (274 KB archive with native bash/python scripts, docker compose, execution log)
+  - `evidence/ALA-2/01_environment_and_instances.png` to `07_network_isolation.png` (7 verified figure screenshots)
+  - `evidence/ALA-2/full_run.log` (Raw console execution output of the complete 9-step lab run)
+  - `FINAL-SUBMISSION/ALA-2.pdf` & `FINAL-SUBMISSION/Virtualization_Lab_Report.pdf`
   - `virtualization/scripts/provision_vms.ps1`
   - `virtualization/configurations/Vagrantfile`
   - `virtualization/configurations/GMIU-Ubuntu-VM-01.json`
@@ -84,13 +89,19 @@
   - `evidence/ALA-2/vm_isolation_evidence.txt`
   - `virtualization/scripts/enable_vtx_bios_guide.md`
 - **Commands Executed:**
-  - Execution of PowerShell automation scripts generating Vagrant and VirtualBox configurations for `GMIU-Ubuntu-VM-01` (Compute/Web node, 2 vCPU, 2048 MB RAM) and `GMIU-Ubuntu-VM-02` (Database/Storage node, 2 vCPU, 2048 MB RAM).
-  - Diagnostic simulations capturing Linux `lscpu`, `free -h`, `df -h`, `vmstat`, `ip addr`, and network ping isolation.
+  - `native/enter.sh` (cgroup creation, cpu.cfs_quota_us / memory.limit_in_bytes, unshare namespaces, tmpfs mounts)
+  - `native/run_lab.sh` (9-step automated lab execution and verification pipeline)
+  - `native/burn.py` (CPU load generator measuring CFS throttle across 50%, 99%, 25%)
+  - `native/memhog.py` (RAM load generator verifying kernel OOM killer containment at 256MB boundary)
+  - `dd if=/dev/zero of=/data/big bs=1M count=100` (Verifying 50MB storage quota enforcement)
+  - Execution of PowerShell automation scripts generating Vagrant and VirtualBox configurations for `GMIU-Ubuntu-VM-01` (2 vCPU, 2048 MB RAM) and `GMIU-Ubuntu-VM-02` (1 vCPU, 2048 MB RAM).
 - **Tests Performed:**
-  - Hardware feasibility check: Host RAM availability (~1.13 GB free) documented alongside VT-x UEFI instruction guide.
-  - Resource overcommit calculation & cross-guest ping latency simulation (192.168.56.101 <-> 192.168.56.102).
+  - **CPU Quota Enforcement:** vm1 50% core (3.01s / 6s), vm2 99% core (5.96s / 6s), vm3 25% core (1.51s / 6s).
+  - **Memory Containment:** vm1 process terminated with exit code 137 (SIGKILL) by kernel OOM killer at 250MB (limit 256MB), max_usage 256MB, oom_kill=1. Host memory unaffected (3747 MB available).
+  - **Storage Bounds:** tmpfs mount capped write at exactly 50 MB (52,428,800 bytes) with "No space left on device".
+  - **Boundary Isolation:** Process isolation (PID 1 inside instance vs 66 host processes), UTS hostname isolation, mount namespace file confidentiality (`secret from vm1` invisible to vm2 and host), and network namespace segregation (vm3 loopback only, 8.8.8.8 unreachable).
 - **Evidence Captured:**
-  - Host audit JSON, Dual VM configuration files, VM diagnostics comparison CSV, Network isolation verification log.
+  - 6-Page Academic PDF report (`Virtualization_Lab_Report.pdf`), 7 high-res terminal captures (Figures 1–7), raw execution trace (`full_run.log`), and 274 KB source archive (`virtualization-lab.zip`).
 - **Remaining Work:** None.
 
 ---

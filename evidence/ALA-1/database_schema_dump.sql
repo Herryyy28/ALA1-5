@@ -207,7 +207,7 @@ INSERT INTO public.profiles (enrollment_number, full_name, email, role, departme
 VALUES (
     '20230905090031',
     'Herry Prajapati',
-    'herry.prajapati@gmiu.edu.in',
+    'prajapatiherry.28@gmail.com',
     'student',
     'Information Technology',
     'Gyanmanjari Institute of Technology (GMIU)',

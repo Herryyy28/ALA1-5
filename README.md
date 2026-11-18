@@ -193,7 +193,7 @@ python reports/generate_all_reports.py
 * [x] **UI/UX Design:** University academic dashboard with deep navy (`#263B80`), slate violet (`#5269C9`), and soft neutral background (`#F7F8FC`).
 * [x] **Student Dashboard:** Personalized for **Herry Prajapati (20230905090031)**, dynamic completion calculation from saved data, initial status: 5 pending.
 * [x] **ALA 1:** Cloud-hosted application with Supabase PostgreSQL schema, RLS policies, Netlify deployment configuration, and student directory search.
-* [x] **ALA 2:** Host hardware audit executed on Windows 11 host (i5-12450HX, 12GB RAM), VBoxManage provisioning scripts, Vagrantfile, and in-guest Linux isolation commands.
+* [x] **ALA 2:** Linux kernel virtualization lab (cgroups v1 & namespaces) and Type-2 hypervisor audit: 3 isolated instances (vm1, vm2, vm3), CFS CPU throttling (50%/99%/25%), OOM killer memory containment (SIGKILL 137 at 256MB), tmpfs storage quota (50MB), and multi-namespace isolation (PID 1, UTS, Mount private, isolated Network). Verified 6-page academic report (`Virtualization_Lab_Report.pdf` / `ALA-2.pdf`), 7 high-res terminal captures (Figures 1–7), and complete source/logs bundle (`virtualization-lab.zip`).
 * [x] **ALA 3:** Comprehensive 25-section cloud security research paper, comparative security matrix (AWS vs Azure vs GCP), envelope encryption diagram, and breach analyses.
 * [x] **ALA 4:** Multi-cloud SLA case study, downtime calculation formulas across 99.0%-99.999%, service credit claim schedules, 5x5 risk matrix, and compliance frameworks.
 * [x] **ALA 5:** Locust load testing suite, empirical benchmarks for 10, 50, and 100 users, Layer-7 load balancing simulator, and auto-scaling rules.

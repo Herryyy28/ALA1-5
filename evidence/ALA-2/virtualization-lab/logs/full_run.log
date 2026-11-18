@@ -1,0 +1,105 @@
+
+=================== STEP 1: HOST ENVIRONMENT ===================
+$ uname -a
+Linux vm 6.18.44-fc-v595 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux
+$ nproc ; free -m
+1
+               total        used        free      shared  buff/cache   available
+Mem:            3992         216        3861          12          69        3775
+
+=================== STEP 2: CREATE 3 INSTANCES (cgroup limits) ===================
+NAME  HOST_PID  CPU_LIMIT  RAM_LIMIT NETWORK      STATE
+vm1   2516      50% core   256 MB    shared       running(S)
+vm2   2517      100% core  512 MB    shared       running(S)
+vm3   2518      25% core   128 MB    isolated     running(S)
+
+Host view of the 3 running instance processes:
+  PID STAT     ELAPSED CMD
+ 2516 S          00:02 sleep 600
+ 2517 S          00:02 sleep 600
+ 2518 S          00:02 sleep 600
+
+=================== STEP 3: CPU ALLOCATION (same 6s busy-loop in each instance) ===================
+--- vm1 (quota 50%)
+wall=6.00s  cpu_time=3.01s  => effective CPU use = 50% of one core
+--- vm2 (quota 100%)
+wall=6.00s  cpu_time=5.96s  => effective CPU use = 99% of one core
+--- vm3 (quota 25%)
+wall=6.02s  cpu_time=1.51s  => effective CPU use = 25% of one core
+
+=================== STEP 4: MEMORY ALLOCATION (vm1 limit 256 MB, process tries to use 600 MB) ===================
+allocated 50 MB
+allocated 100 MB
+allocated 150 MB
+allocated 200 MB
+allocated 250 MB
+bash: line 1:     6 Killed                  python3 memhog.py 600
+python exit code: 137   (137 = SIGKILL from OOM killer)
+memory.limit_in_bytes     : 256 MB
+memory.max_usage_in_bytes : 256 MB (peak)
+oom_kill_disable 0
+oom_kill 1
+--- host memory still healthy:
+               total        used        free      shared  buff/cache   available
+Mem:            3992         244        3832          12          69        3747
+
+=================== STEP 5: STORAGE ALLOCATION (vm3 has a 50 MB /data volume) ===================
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs            50M     0   50M   0% /data
+--- writing 100 MB into the 50 MB volume:
+dd: error writing '/data/big': No space left on device
+51+0 records in
+50+0 records out
+52428800 bytes (52 MB, 50 MiB) copied, 0.0147953 s, 3.5 GB/s
+--- after:
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs            50M   50M     0 100% /data
+
+--- vm2 has a 200 MB /data volume:
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           200M     0  200M   0% /data
+
+=================== STEP 6: ISOLATION - PROCESSES ===================
+--- HOST process count: 66
+--- vm1: ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   7908  3924 ?        R    06:11   0:00 ps aux
+--- vm2: ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   7908  3912 ?        R    06:11   0:00 ps aux
+--- hostnames:
+vm1 -> hostname=vm1, shell PID=1
+vm2 -> hostname=vm2, shell PID=1
+vm3 -> hostname=vm3, shell PID=1
+host -> hostname=vm  (unchanged)
+
+=================== STEP 7: ISOLATION - FILESYSTEM ===================
+[vm1] ls -l /data:
+total 4
+-rw-r--r-- 1 root root 16 Nov 18 06:11 test.txt
+[vm1] cat /data/test.txt:
+secret from vm1
+[vm2] ls -l /data:
+total 0
+[vm2] cat /data/test.txt:
+cat: /data/test.txt: No such file or directory
+[host] cat /data/test.txt: cat: /data/test.txt: No such file or directory
+
+=================== STEP 8: ISOLATION - NETWORK ===================
+HOST interfaces : lo ifb0 ifb1 eth0 
+vm1  interfaces : lo ifb0 ifb1 eth0    (shares host network)
+vm3  interfaces : lo    (own isolated network)
+--- can vm3 reach the outside? (ping 127.0.0.1 ok, anything else unreachable):
+vm3 -> 8.8.8.8 : FAILED ( [Errno 101] Network is unreachable )
+--- namespace IDs of the 3 RUNNING instances, read from the host (different number = different namespace):
+       net                pid                mnt                uts               
+host   4026531833         4026531836         4026531832         4026531838         
+vm1    4026531833         4026532215         4026532212         4026532213         
+vm2    4026531833         4026532219         4026532216         4026532217         
+vm3    4026532224         4026532223         4026532220         4026532221         
+
+=================== STEP 9: CLEANUP ===================
+./run_lab.sh: line 5:  2510 Killed                  ./enter.sh vm1 50000 268435456 100m shared -- "$@"
+./run_lab.sh: line 6:  2511 Killed                  ./enter.sh vm2 100000 536870912 200m shared -- "$@"
+./run_lab.sh: line 7:  2512 Killed                  ./enter.sh vm3 25000 134217728 50m isolated -- "$@"
+instances removed

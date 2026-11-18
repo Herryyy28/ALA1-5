@@ -1,0 +1,31 @@
+services:
+  vm1:
+    build: .
+    container_name: vm1
+    hostname: vm1
+    cpus: 0.5
+    mem_limit: 256m
+    memswap_limit: 256m      # no swap, so exceeding RAM triggers the OOM kill
+    tmpfs: ["/data:size=100m"]
+    networks: [net_a]
+  vm2:
+    build: .
+    container_name: vm2
+    hostname: vm2
+    cpus: 1.0
+    mem_limit: 512m
+    memswap_limit: 512m
+    tmpfs: ["/data:size=200m"]
+    networks: [net_a]
+  vm3:
+    build: .
+    container_name: vm3
+    hostname: vm3
+    cpus: 0.25
+    mem_limit: 128m
+    memswap_limit: 128m
+    tmpfs: ["/data:size=50m"]
+    networks: [net_b]
+networks:
+  net_a:
+  net_b:
