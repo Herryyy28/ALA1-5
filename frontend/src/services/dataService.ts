@@ -21,6 +21,35 @@ const STORAGE_KEYS = {
   ROLE: 'gmiu_current_role'
 };
 
+function safeGetItem(key: string): string | null {
+  try {
+    return typeof window !== 'undefined' && window.localStorage ? window.localStorage.getItem(key) : null;
+  } catch (e) {
+    console.warn('localStorage read error:', e);
+    return null;
+  }
+}
+
+function safeSetItem(key: string, value: string): void {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.setItem(key, value);
+    }
+  } catch (e) {
+    console.warn('localStorage write error:', e);
+  }
+}
+
+function safeJsonParse<T>(raw: string | null, fallback: T): T {
+  if (!raw) return fallback;
+  try {
+    return JSON.parse(raw) as T;
+  } catch (e) {
+    console.warn('safeJsonParse fallback:', e);
+    return fallback;
+  }
+}
+
 class DataService {
   private profile: StudentProfile;
   private submissions: AlaSubmission[];
@@ -29,24 +58,26 @@ class DataService {
   private listeners: Set<() => void> = new Set();
 
   constructor() {
-    // Load Profile
-    const savedProfile = localStorage.getItem(STORAGE_KEYS.PROFILE);
-    this.profile = savedProfile ? { ...STUDENT_PROFILE, ...JSON.parse(savedProfile) } : { ...STUDENT_PROFILE };
+    // Safely Load Profile
+    const savedProfile = safeGetItem(STORAGE_KEYS.PROFILE);
+    const parsedProfile = safeJsonParse<Partial<StudentProfile>>(savedProfile, {});
+    this.profile = { ...STUDENT_PROFILE, ...parsedProfile };
+    
     // Permanently enforce authentic communication profile
     this.profile.email = 'prajapatiherry.28@gmail.com';
     this.profile.phone = '+91 7486865058';
     this.persist();
 
-    // Load Submissions (Default is ALL 5 PENDING)
-    const savedSubmissions = localStorage.getItem(STORAGE_KEYS.SUBMISSIONS);
-    this.submissions = savedSubmissions ? JSON.parse(savedSubmissions) : INITIAL_SUBMISSIONS;
+    // Safely Load Submissions
+    const savedSubmissions = safeGetItem(STORAGE_KEYS.SUBMISSIONS);
+    this.submissions = safeJsonParse<AlaSubmission[]>(savedSubmissions, INITIAL_SUBMISSIONS);
 
-    // Load Logs
-    const savedLogs = localStorage.getItem(STORAGE_KEYS.LOGS);
-    this.logs = savedLogs ? JSON.parse(savedLogs) : INITIAL_ACTIVITY_LOGS;
+    // Safely Load Logs
+    const savedLogs = safeGetItem(STORAGE_KEYS.LOGS);
+    this.logs = safeJsonParse<ActivityLog[]>(savedLogs, INITIAL_ACTIVITY_LOGS);
 
-    // Load Role
-    const savedRole = localStorage.getItem(STORAGE_KEYS.ROLE) as UserRole | null;
+    // Safely Load Role
+    const savedRole = safeGetItem(STORAGE_KEYS.ROLE) as UserRole | null;
     this.currentRole = savedRole || 'student';
 
     // Synchronize if Supabase is active
@@ -61,14 +92,20 @@ class DataService {
   }
 
   private notify() {
-    this.listeners.forEach(fn => fn());
+    this.listeners.forEach(fn => {
+      try {
+        fn();
+      } catch (err) {
+        console.error('Listener callback error:', err);
+      }
+    });
   }
 
   private persist() {
-    localStorage.setItem(STORAGE_KEYS.PROFILE, JSON.stringify(this.profile));
-    localStorage.setItem(STORAGE_KEYS.SUBMISSIONS, JSON.stringify(this.submissions));
-    localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify(this.logs));
-    localStorage.setItem(STORAGE_KEYS.ROLE, this.currentRole);
+    safeSetItem(STORAGE_KEYS.PROFILE, JSON.stringify(this.profile));
+    safeSetItem(STORAGE_KEYS.SUBMISSIONS, JSON.stringify(this.submissions));
+    safeSetItem(STORAGE_KEYS.LOGS, JSON.stringify(this.logs));
+    safeSetItem(STORAGE_KEYS.ROLE, this.currentRole);
     this.notify();
   }
 

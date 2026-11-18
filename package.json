@@ -4,7 +4,7 @@
   "description": "Gyanmanjari Institute of Technology (GMIU) - Cloud Computing Practical Suite (ALA 1-5) by Herry Prajapati (20230905090031)",
   "scripts": {
     "dev": "npm run --prefix frontend dev",
-    "build": "npm run --prefix frontend build",
+    "build": "npm run --prefix frontend build && node -e \"const fs=require('fs'); fs.rmSync('dist', {recursive:true, force:true}); fs.cpSync('frontend/dist', 'dist', {recursive: true});\"",
     "preview": "npm run --prefix frontend preview",
     "test:perf": "python performance/scripts/run_benchmarks.py",
     "generate:reports": "python reports/generate_all_reports.py"
