@@ -1,6 +1,6 @@
 [build]
-  command = "npm install && npm run build"
   publish = "dist"
+  command = "echo Pre-built distribution ready"
 
 [[redirects]]
   from = "/*"
