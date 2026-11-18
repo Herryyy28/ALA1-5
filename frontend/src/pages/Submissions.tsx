@@ -70,7 +70,7 @@ export const Submissions: React.FC = () => {
               ALA Submission Tracker
             </h1>
             <p className="text-xs sm:text-sm text-[#778198] mt-1.5 leading-relaxed">
-              Manage assignment states, submit practical evidence bundles, review faculty grades, and verify compliance with university deadlines.
+              Manage assignment states, submit practical evidence bundles, and track compliance with university deadlines.
             </p>
           </div>
 
@@ -121,11 +121,6 @@ export const Submissions: React.FC = () => {
                     <div className="flex items-center space-x-2">
                       <span className="font-bold text-xs text-[#263B80]">{act.id}</span>
                       <StatusBadge status={status} size="sm" />
-                      {sub?.score && (
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700">
-                          {sub.score}/20 Marks
-                        </span>
-                      )}
                     </div>
                     <h4 className="font-bold text-xs text-[#172033]">{act.title}</h4>
                     <p className="text-[11px] text-[#778198]">

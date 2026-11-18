@@ -153,9 +153,9 @@ export const Dashboard: React.FC = () => {
         {/* Metric 2: Completed / Submitted */}
         <div className="bg-white p-5 rounded-2xl border border-[#E8EAF2] shadow-card flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold text-[#778198] uppercase tracking-wider">Submitted / Verified</p>
+            <p className="text-xs font-semibold text-[#778198] uppercase tracking-wider">Submitted Activities</p>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[#16865B] mt-1">{stats.completed}</h3>
-            <p className="text-xs text-[#778198] mt-1">{stats.verified} evaluated by faculty</p>
+            <p className="text-xs text-[#778198] mt-1">{stats.completed} of {stats.total} activities recorded</p>
           </div>
           <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#16865B] flex items-center justify-center">
             <CheckCircle2 className="w-6 h-6" />

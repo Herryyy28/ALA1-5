@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { dataService } from '../../services/dataService';
-import { StudentProfile, UserRole } from '../../types';
+import { StudentProfile } from '../../types';
 import { 
   GraduationCap, 
   Calendar, 
   UserCheck, 
-  FileText, 
-  ChevronDown,
   RotateCcw
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [profile, setProfile] = useState<StudentProfile>(dataService.getProfile());
-  const [role, setRole] = useState<UserRole>(dataService.getRole());
-  const [showRoleMenu, setShowRoleMenu] = useState(false);
 
   useEffect(() => {
     return dataService.subscribe(() => {
       setProfile(dataService.getProfile());
-      setRole(dataService.getRole());
     });
   }, []);
-
-  const handleRoleChange = (newRole: UserRole) => {
-    dataService.setRole(newRole);
-    setShowRoleMenu(false);
-  };
 
   const handleReset = () => {
     if (window.confirm('Reset all ALA submissions back to Pending (initial state)?')) {
@@ -64,39 +54,10 @@ export const Navbar: React.FC = () => {
               <span>Due: <strong className="text-[#263B80]">30 Nov 2026</strong></span>
             </div>
 
-            {/* Role Switcher */}
-            <div className="relative">
-              <button
-                onClick={() => setShowRoleMenu(!showRoleMenu)}
-                className="flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-[#E8EAF2] bg-white hover:bg-[#F7F8FC] text-xs font-medium text-[#172033] transition-colors"
-                title="Switch active role viewpoint"
-              >
-                <UserCheck className="w-3.5 h-3.5 text-[#5269C9]" />
-                <span className="capitalize font-semibold">{role} View</span>
-                <ChevronDown className="w-3 h-3 text-[#778198]" />
-              </button>
-
-              {showRoleMenu && (
-                <div className="absolute right-0 mt-2 w-48 rounded-xl bg-white border border-[#E8EAF2] shadow-xl py-1 z-50 animate-fade-in">
-                  <div className="px-3 py-2 border-b border-[#E8EAF2] text-[11px] font-semibold text-[#778198] uppercase tracking-wider">
-                    Switch Viewpoint
-                  </div>
-                  <button
-                    onClick={() => handleRoleChange('student')}
-                    className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#F7F8FC] ${role === 'student' ? 'text-[#263B80] font-bold bg-[#F7F8FC]' : 'text-[#172033]'}`}
-                  >
-                    <span>Student (Candidate)</span>
-                    {role === 'student' && <span className="w-1.5 h-1.5 rounded-full bg-[#263B80]"></span>}
-                  </button>
-                  <button
-                    onClick={() => handleRoleChange('admin')}
-                    className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#F7F8FC] ${role === 'admin' ? 'text-[#263B80] font-bold bg-[#F7F8FC]' : 'text-[#172033]'}`}
-                  >
-                    <span>Faculty / Admin</span>
-                    {role === 'admin' && <span className="w-1.5 h-1.5 rounded-full bg-[#263B80]"></span>}
-                  </button>
-                </div>
-              )}
+            {/* Student Candidate Badge */}
+            <div className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-[#E8EAF2] bg-[#F7F8FC] text-xs font-semibold text-[#263B80]">
+              <UserCheck className="w-3.5 h-3.5 text-[#5269C9]" />
+              <span>Student Candidate</span>
             </div>
 
             {/* Reset State Button */}

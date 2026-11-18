@@ -3,23 +3,23 @@ import { useParams, Link } from 'react-router-dom';
 import { dataService } from '../services/dataService';
 import { StatusBadge } from '../components/common/StatusBadge';
 import { PdfReportGenerator } from '../services/pdfGenerator';
-import { 
-  BENCHMARK_SCENARIOS, 
-  SLA_COMPARISON_DATA, 
-  SECURITY_COMPARISON_DATA 
+import {
+  BENCHMARK_SCENARIOS,
+  SLA_COMPARISON_DATA,
+  SECURITY_COMPARISON_DATA
 } from '../data/mockData';
-import { 
-  Cloud, 
-  Server, 
-  ShieldCheck, 
-  FileCheck2, 
-  Gauge, 
-  FileDown, 
-  CheckCircle2, 
-  Clock, 
-  Play, 
-  Terminal, 
-  Upload, 
+import {
+  Cloud,
+  Server,
+  ShieldCheck,
+  FileCheck2,
+  Gauge,
+  FileDown,
+  CheckCircle2,
+  Clock,
+  Play,
+  Terminal,
+  Upload,
   AlertCircle,
   Copy,
   Check,
@@ -28,17 +28,17 @@ import {
   ArrowRight,
   Database
 } from 'lucide-react';
-import { 
-  LineChart, 
-  Line, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
-  ResponsiveContainer, 
-  BarChart, 
-  Bar 
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  BarChart,
+  Bar
 } from 'recharts';
 
 export const AlaDetail: React.FC = () => {
@@ -46,7 +46,6 @@ export const AlaDetail: React.FC = () => {
   const [activity, setActivity] = useState(dataService.getActivity(id || 'ALA-1'));
   const [submission, setSubmission] = useState(dataService.getSubmission(id || 'ALA-1'));
   const [profile, setProfile] = useState(dataService.getProfile());
-  const [role, setRole] = useState(dataService.getRole());
   const [activeTab, setActiveTab] = useState<'overview' | 'implementation' | 'lab' | 'evidence' | 'submit'>('overview');
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -54,10 +53,6 @@ export const AlaDetail: React.FC = () => {
   const [submissionNotes, setSubmissionNotes] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  // Form states for grading
-  const [gradeScore, setGradeScore] = useState(19);
-  const [gradeFeedback, setGradeFeedback] = useState('Excellent practical implementation with authentic evidence and verified logs.');
 
   // Interactive load balancer simulator for ALA-5
   const [lbAlgorithm, setLbAlgorithm] = useState<'round_robin' | 'least_conn'>('round_robin');
@@ -74,7 +69,6 @@ export const AlaDetail: React.FC = () => {
     return dataService.subscribe(() => {
       setActivity(dataService.getActivity(id || 'ALA-1'));
       setSubmission(dataService.getSubmission(id || 'ALA-1'));
-      setRole(dataService.getRole());
       setProfile(dataService.getProfile());
     });
   }, [id]);
@@ -114,11 +108,6 @@ export const AlaDetail: React.FC = () => {
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 3000);
     }, 600);
-  };
-
-  const handleVerify = () => {
-    dataService.verifySubmission(activity.id, gradeScore, gradeFeedback);
-    alert(`${activity.id} verified and graded successfully!`);
   };
 
   const currentStatus = submission ? submission.status : 'pending';
@@ -164,16 +153,15 @@ export const AlaDetail: React.FC = () => {
             { id: 'implementation', label: '2. Implementation Guide' },
             { id: 'lab', label: '3. Interactive Demonstration' },
             { id: 'evidence', label: '4. Evidence & Diagnostics' },
-            { id: 'submit', label: '5. Submission & Grading' },
+            { id: 'submit', label: '5. Submit Assignment' },
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`pb-3 px-3 transition-colors border-b-2 whitespace-nowrap ${
-                activeTab === tab.id
-                  ? 'border-[#263B80] text-[#263B80]'
-                  : 'border-transparent text-[#778198] hover:text-[#172033]'
-              }`}
+              className={`pb-3 px-3 transition-colors border-b-2 whitespace-nowrap ${activeTab === tab.id
+                ? 'border-[#263B80] text-[#263B80]'
+                : 'border-transparent text-[#778198] hover:text-[#172033]'
+                }`}
             >
               {tab.label}
             </button>
@@ -417,7 +405,7 @@ export const AlaDetail: React.FC = () => {
                   <span>Simulated Guest Linux Terminal (lscpu, free -h, df -h)</span>
                 </h4>
                 <pre className="bg-[#172033] text-emerald-400 p-4 rounded-xl text-xs font-mono overflow-x-auto leading-relaxed">
-{`gmiu@GMIU-Ubuntu-VM-01:~$ hostname
+                  {`gmiu@GMIU-Ubuntu-VM-01:~$ hostname
 GMIU-Ubuntu-VM-01
 gmiu@GMIU-Ubuntu-VM-01:~$ uname -a
 Linux GMIU-Ubuntu-VM-01 6.8.0-40-generic #40-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux
@@ -534,11 +522,10 @@ Filesystem      Size  Used Avail Use% Mounted on
                       <button
                         key={u}
                         onClick={() => setSimActiveUsers(u as any)}
-                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${
-                          simActiveUsers === u
-                            ? 'bg-[#263B80] text-white shadow-sm'
-                            : 'text-[#778198] hover:text-[#172033]'
-                        }`}
+                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${simActiveUsers === u
+                          ? 'bg-[#263B80] text-white shadow-sm'
+                          : 'text-[#778198] hover:text-[#172033]'
+                          }`}
                       >
                         {u} Users ({u === 10 ? 'Low' : u === 50 ? 'Med' : 'High'})
                       </button>
@@ -643,12 +630,12 @@ Filesystem      Size  Used Avail Use% Mounted on
               </div>
 
               <div className="p-4 rounded-xl border border-[#E8EAF2] space-y-2">
-                <h4 className="text-xs font-bold text-[#172033]">Submission Status & Evaluation</h4>
+                <h4 className="text-xs font-bold text-[#172033]">Submission Details</h4>
                 <ul className="text-xs text-[#56627A] space-y-1">
-                  <li>Status: <StatusBadge status={currentStatus} size="sm" /></li>
-                  <li>Max Practical Marks: <strong>20 Marks</strong></li>
+                  <li>Current Status: <StatusBadge status={currentStatus} size="sm" /></li>
+                  <li>Academic Weightage: <strong>{activity.weightage}%</strong></li>
                   <li>Submission Deadline: <strong>30 November 2026</strong></li>
-                  <li>Feedback: {submission?.feedback || 'Pending evaluation.'}</li>
+                  <li>Target Department: <code className="bg-gray-100 px-1.5 py-0.5 rounded text-[11px]">Information Technology (GMIU)</code></li>
                 </ul>
               </div>
             </div>
@@ -656,7 +643,7 @@ Filesystem      Size  Used Avail Use% Mounted on
         </div>
       )}
 
-      {/* TAB 5: SUBMISSION & GRADING */}
+      {/* TAB 5: SUBMIT ASSIGNMENT */}
       {activeTab === 'submit' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Student Submission Card */}
@@ -670,7 +657,7 @@ Filesystem      Size  Used Avail Use% Mounted on
             </div>
 
             <p className="text-xs text-[#778198]">
-              Attach documentation notes, verify code execution, and submit {activity.id} to the university portal.
+              Attach documentation notes, verify code execution, and submit {activity.id} to your portfolio.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4 pt-2">
@@ -710,55 +697,57 @@ Filesystem      Size  Used Avail Use% Mounted on
             </form>
           </div>
 
-          {/* Faculty / Admin Verification Card */}
+          {/* Submission Guidelines & Verification Checklist Card */}
           <div className="bg-white rounded-2xl border border-[#E8EAF2] p-6 shadow-card space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-sm text-[#172033] flex items-center space-x-2">
-                <ShieldCheck className="w-4 h-4 text-[#5269C9]" />
-                <span>Faculty Evaluation Portal</span>
+                <ShieldCheck className="w-4 h-4 text-[#263B80]" />
+                <span>Submission Checklist & Standards</span>
               </h3>
-              <span className="text-[10px] font-bold text-[#5269C9] bg-indigo-50 px-2 py-0.5 rounded-full">
-                Instructor Mode
+              <span className="text-[10px] font-bold text-[#263B80] bg-indigo-50 px-2 py-0.5 rounded-full">
+                GMIU Criteria
               </span>
             </div>
 
             <p className="text-xs text-[#778198]">
-              Verify student practical evidence, award marks out of 20, and record institutional feedback.
+              Verify that all deliverables meet the university submission standards before finalizing.
             </p>
 
-            <div className="space-y-4 pt-2">
-              <div>
-                <label className="block text-xs font-bold text-[#172033] mb-1">
-                  Awarded Marks (out of 20)
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  max="20"
-                  value={gradeScore}
-                  onChange={(e) => setGradeScore(Number(e.target.value))}
-                  className="w-full text-xs p-2.5 rounded-xl border border-[#E8EAF2] focus:border-[#263B80] outline-none font-bold"
-                />
+            <div className="space-y-3 pt-2 text-xs text-[#56627A]">
+              <div className="p-3 bg-[#F7F8FC] rounded-xl border border-[#E8EAF2] space-y-2">
+                <div className="flex items-center space-x-2 text-[#172033] font-bold">
+                  <CheckCircle2 className="w-4 h-4 text-[#16865B]" />
+                  <span>Implementation & Source Verification</span>
+                </div>
+                <p className="text-[11px] text-[#778198] pl-6">
+                  Practical code, scripts, or configurations have been created and validated locally.
+                </p>
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-[#172033] mb-1">
-                  Faculty Feedback & Rubric Notes
-                </label>
-                <textarea
-                  value={gradeFeedback}
-                  onChange={(e) => setGradeFeedback(e.target.value)}
-                  rows={3}
-                  className="w-full text-xs p-3 rounded-xl border border-[#E8EAF2] focus:border-[#263B80] outline-none"
-                />
+              <div className="p-3 bg-[#F7F8FC] rounded-xl border border-[#E8EAF2] space-y-2">
+                <div className="flex items-center space-x-2 text-[#172033] font-bold">
+                  <CheckCircle2 className="w-4 h-4 text-[#16865B]" />
+                  <span>Empirical Evidence Captured</span>
+                </div>
+                <p className="text-[11px] text-[#778198] pl-6">
+                  Genuine system diagnostics or benchmark outputs recorded in <code>evidence/{activity.id}/</code>.
+                </p>
               </div>
 
-              <button
-                onClick={handleVerify}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#16865B] hover:bg-[#126b48] text-white text-xs font-bold transition-all shadow-sm active:scale-95"
-              >
-                Verify & Award Marks
-              </button>
+              <div className="p-3 bg-[#F7F8FC] rounded-xl border border-[#E8EAF2] space-y-2">
+                <div className="flex items-center space-x-2 text-[#172033] font-bold">
+                  <CheckCircle2 className="w-4 h-4 text-[#16865B]" />
+                  <span>PDF Report Generated</span>
+                </div>
+                <p className="text-[11px] text-[#778198] pl-6">
+                  Official 15-section academic PDF available for download with standard cover page.
+                </p>
+              </div>
+
+              <div className="pt-2 text-[11px] text-[#778198] space-y-1">
+                <div>Candidate: <strong>{profile.full_name} ({profile.enrollment_number})</strong></div>
+                <div>Deadline: <strong className="text-amber-700">30 November 2026</strong></div>
+              </div>
             </div>
           </div>
         </div>
