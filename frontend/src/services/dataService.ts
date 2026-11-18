@@ -1,16 +1,16 @@
-import { 
-  STUDENT_PROFILE, 
-  ALA_ACTIVITIES, 
-  INITIAL_SUBMISSIONS, 
-  INITIAL_ACTIVITY_LOGS 
+import {
+  STUDENT_PROFILE,
+  ALA_ACTIVITIES,
+  INITIAL_SUBMISSIONS,
+  INITIAL_ACTIVITY_LOGS
 } from '../data/mockData';
 import { REGISTERED_STUDENTS, RegisteredStudent } from '../data/studentsData';
-import { 
-  AlaSubmission, 
-  StudentProfile, 
-  ActivityLog, 
-  SubmissionFile, 
-  UserRole 
+import {
+  AlaSubmission,
+  StudentProfile,
+  ActivityLog,
+  SubmissionFile,
+  UserRole
 } from '../types';
 import { supabase, isSupabaseConfigured } from './supabaseClient';
 
@@ -62,7 +62,7 @@ class DataService {
     const savedProfile = safeGetItem(STORAGE_KEYS.PROFILE);
     const parsedProfile = safeJsonParse<Partial<StudentProfile>>(savedProfile, {});
     this.profile = { ...STUDENT_PROFILE, ...parsedProfile };
-    
+
     // Permanently enforce authentic communication profile
     this.profile.email = 'prajapatiherry.28@gmail.com';
     this.profile.phone = '+91 7486865058';
@@ -281,7 +281,7 @@ class DataService {
   public getRegisteredStudents(): RegisteredStudent[] {
     const alaIds = ['ALA-1', 'ALA-2', 'ALA-3', 'ALA-4', 'ALA-5'];
     const currentEnr = this.profile.enrollment_number;
-    
+
     // Dynamically calculate bitmask for current student based on saved submissions
     const dynamicBitmask = alaIds.map(id => {
       const sub = this.submissions.find(s => s.ala_id.toLowerCase() === id.toLowerCase());
@@ -302,12 +302,12 @@ class DataService {
 
   public async refreshStudentRegistry(): Promise<RegisteredStudent[]> {
     this.lastSyncedAt = new Date().toISOString();
-    
+
     try {
       // Attempt live fetch from reference portal
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 3000);
-      
+
       const res = await fetch('https://cosmic-gingersnap-82f0a9.netlify.app/', {
         signal: controller.signal,
         mode: 'cors'
@@ -340,8 +340,8 @@ class DataService {
     const list = this.getRegisteredStudents();
     const clean = query.trim().toLowerCase();
     if (!clean) return list.slice(0, 20);
-    return list.filter(s => 
-      s.id.toLowerCase().includes(clean) || 
+    return list.filter(s =>
+      s.id.toLowerCase().includes(clean) ||
       s.name.toLowerCase().includes(clean)
     );
   }
