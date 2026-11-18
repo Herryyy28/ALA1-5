@@ -39,8 +39,17 @@ export const Profile: React.FC = () => {
     <div className="space-y-6 animate-fade-in max-w-4xl mx-auto pb-12">
       {/* Profile Banner */}
       <div className="bg-white rounded-2xl border border-[#E8EAF2] p-6 sm:p-8 shadow-card flex flex-col sm:flex-row items-center gap-6">
-        <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-[#263B80] to-[#5269C9] text-white flex items-center justify-center font-extrabold text-2xl shadow-lg shadow-indigo-100 flex-shrink-0">
-          HP
+        <div className="w-24 h-24 rounded-2xl overflow-hidden border-2 border-[#5269C9]/30 shadow-lg shadow-indigo-100 flex-shrink-0 bg-[#263B80] flex items-center justify-center text-white font-extrabold text-2xl">
+          <img 
+            src={profile.avatar_url || '/profile_photo.png'} 
+            alt={profile.full_name} 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.style.display = 'none';
+              if (target.parentElement) target.parentElement.innerText = 'HP';
+            }}
+          />
         </div>
 
         <div className="text-center sm:text-left space-y-1">

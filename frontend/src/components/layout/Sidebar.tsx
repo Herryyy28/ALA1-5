@@ -78,13 +78,23 @@ export const Sidebar: React.FC = () => {
 
       {/* University Accreditation Footer Box */}
       <div className="mt-6 pt-4 border-t border-[#E8EAF2] text-[11px] text-[#778198]">
-        <div className="p-3 bg-[#F7F8FC] rounded-xl border border-[#E8EAF2]">
-          <p className="font-bold text-[#172033]">GMIU IT Department</p>
-          <p className="text-[10px] mt-0.5">Cloud Computing (2026-27)</p>
-          <div className="mt-2 flex items-center justify-between text-[10px] font-mono">
-            <span>Enr: 20230905090031</span>
+        <NavLink 
+          to="/profile"
+          className="p-3 bg-[#F7F8FC] hover:bg-indigo-50/50 rounded-xl border border-[#E8EAF2] flex items-center space-x-3 transition-colors block"
+        >
+          <div className="w-10 h-10 rounded-full overflow-hidden border border-[#5269C9]/30 flex-shrink-0 bg-[#263B80]">
+            <img 
+              src="/profile_photo.png" 
+              alt="Herry Prajapati" 
+              className="w-full h-full object-cover" 
+            />
           </div>
-        </div>
+          <div className="min-w-0 flex-1">
+            <p className="font-bold text-[#172033] text-xs truncate">Herry Prajapati</p>
+            <p className="text-[10px] text-[#5269C9] font-mono">20230905090031</p>
+            <p className="text-[9px] text-[#778198] truncate">GMIU &bull; IT Dept</p>
+          </div>
+        </NavLink>
       </div>
     </aside>
   );

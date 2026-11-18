@@ -9,7 +9,7 @@ export const STUDENT_PROFILE: StudentProfile = {
   department: 'Information Technology',
   university: 'Gyanmanjari Institute of Technology (GMIU)',
   academic_year: '2026–2027',
-  avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+  avatar_url: '/profile_photo.png',
   phone: '+91 7486865058'
 };
 

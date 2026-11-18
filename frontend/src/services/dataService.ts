@@ -66,6 +66,7 @@ class DataService {
     // Permanently enforce authentic communication profile
     this.profile.email = 'prajapatiherry.28@gmail.com';
     this.profile.phone = '+91 7486865058';
+    this.profile.avatar_url = '/profile_photo.png';
     this.persist();
 
     // Safely Load Submissions
