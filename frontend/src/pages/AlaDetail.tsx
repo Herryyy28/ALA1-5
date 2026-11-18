@@ -1635,23 +1635,14 @@ dd: error writing '/data/big': No space left on device
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl border border-[#E8EAF2] flex items-start space-x-3.5">
-                <div className="w-14 h-14 rounded-xl overflow-hidden border border-[#263B80]/30 shadow-sm shrink-0 bg-[#172033]">
-                  <img
-                    src={profile.avatar_url || '/profile_photo.png'}
-                    alt={profile.full_name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-xs font-bold text-[#172033]">Candidate Identity Verification</h4>
-                  <ul className="text-xs text-[#56627A] space-y-0.5">
-                    <li>Student Name: <strong>{profile.full_name}</strong></li>
-                    <li>Enrollment: <code className="bg-gray-100 px-1.5 py-0.5 rounded font-mono font-bold text-[#263B80]">{profile.enrollment_number}</code></li>
-                    <li>Email: <span className="font-mono text-[11px] text-[#263B80]">{profile.email}</span></li>
-                    <li>Department: {profile.department}</li>
-                  </ul>
-                </div>
+              <div className="p-4 rounded-xl border border-[#E8EAF2] space-y-2">
+                <h4 className="text-xs font-bold text-[#172033]">Candidate Identity Verification</h4>
+                <ul className="text-xs text-[#56627A] space-y-1">
+                  <li>Student Name: <strong>{profile.full_name}</strong></li>
+                  <li>Enrollment Number: <code className="bg-gray-100 px-1.5 py-0.5 rounded font-mono font-bold text-[#263B80]">{profile.enrollment_number}</code></li>
+                  <li>Department: {profile.department}</li>
+                  <li>University: {profile.university}</li>
+                </ul>
               </div>
 
               <div className="p-4 rounded-xl border border-[#E8EAF2] space-y-2">

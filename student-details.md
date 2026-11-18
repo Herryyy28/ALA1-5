@@ -3,8 +3,6 @@
 ## 1. Candidate Information
 - **Student Full Name:** Herry Prajapati
 - **Enrollment Number:** 20230905090031
-- **Institutional / Contact Email:** `prajapatiherry.28@gmail.com`
-- **Contact Phone Number:** `+91 7486865058`
 - **Institute:** Gyanmanjari Institute of Technology (GMIU)
 - **Department:** Information Technology
 - **Program:** Bachelor of Technology (B.Tech) - IT

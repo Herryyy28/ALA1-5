@@ -4,13 +4,13 @@ export const STUDENT_PROFILE: StudentProfile = {
   id: 'usr-20230905090031',
   enrollment_number: '20230905090031',
   full_name: 'Herry Prajapati',
-  email: 'prajapatiherry.28@gmail.com',
+  email: 'herry.prajapati@gmiu.edu.in',
   role: 'student',
   department: 'Information Technology',
   university: 'Gyanmanjari Institute of Technology (GMIU)',
   academic_year: '2026–2027',
-  avatar_url: '/profile_photo.png',
-  phone: '+91 7486865058'
+  avatar_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+  phone: '+91 98765 43210'
 };
 
 export const ALA_ACTIVITIES: AlaActivity[] = [

@@ -70,16 +70,12 @@ export const Navbar: React.FC = () => {
             </button>
 
             {/* Student Profile Quick View */}
-            <Link to="/profile" className="flex items-center space-x-3 pl-2 sm:border-l border-[#E8EAF2] group">
-              <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[#263B80]/30 shadow-sm ring-2 ring-[#263B80]/10 group-hover:ring-[#263B80]/30 transition-all">
-                <img
-                  src={profile.avatar_url || '/profile_photo.png'}
-                  alt={profile.full_name}
-                  className="w-full h-full object-cover"
-                />
+            <Link to="/profile" className="flex items-center space-x-3 pl-2 sm:border-l border-[#E8EAF2]">
+              <div className="w-8 h-8 rounded-full bg-[#263B80] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                HP
               </div>
               <div className="hidden lg:block text-left">
-                <p className="text-xs font-bold text-[#172033] leading-none group-hover:text-[#263B80] transition-colors">{profile.full_name}</p>
+                <p className="text-xs font-bold text-[#172033] leading-none">{profile.full_name}</p>
                 <p className="text-[11px] font-mono text-[#778198] mt-1">{profile.enrollment_number}</p>
               </div>
             </Link>

@@ -31,18 +31,7 @@ class DataService {
   constructor() {
     // Load Profile
     const savedProfile = localStorage.getItem(STORAGE_KEYS.PROFILE);
-    this.profile = savedProfile ? { ...STUDENT_PROFILE, ...JSON.parse(savedProfile) } : { ...STUDENT_PROFILE };
-    // Permanently enforce authentic communication profile
-    if (
-      this.profile.email !== 'prajapatiherry.28@gmail.com' ||
-      this.profile.phone !== '+91 7486865058' ||
-      this.profile.avatar_url !== '/profile_photo.png'
-    ) {
-      this.profile.email = 'prajapatiherry.28@gmail.com';
-      this.profile.phone = '+91 7486865058';
-      this.profile.avatar_url = '/profile_photo.png';
-      this.persist();
-    }
+    this.profile = savedProfile ? JSON.parse(savedProfile) : STUDENT_PROFILE;
 
     // Load Submissions (Default is ALL 5 PENDING)
     const savedSubmissions = localStorage.getItem(STORAGE_KEYS.SUBMISSIONS);

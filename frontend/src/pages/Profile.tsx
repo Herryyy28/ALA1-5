@@ -17,8 +17,8 @@ import {
 export const Profile: React.FC = () => {
   const [profile, setProfile] = useState<StudentProfile>(dataService.getProfile());
   const [stats, setStats] = useState(dataService.getProgressStats());
-  const [email, setEmail] = useState(profile.email || 'prajapatiherry.28@gmail.com');
-  const [phone, setPhone] = useState(profile.phone || '+91 7486865058');
+  const [email, setEmail] = useState(profile.email);
+  const [phone, setPhone] = useState(profile.phone || '+91 98765 43210');
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
@@ -39,12 +39,8 @@ export const Profile: React.FC = () => {
     <div className="space-y-6 animate-fade-in max-w-4xl mx-auto pb-12">
       {/* Profile Banner */}
       <div className="bg-white rounded-2xl border border-[#E8EAF2] p-6 sm:p-8 shadow-card flex flex-col sm:flex-row items-center gap-6">
-        <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shadow-lg shadow-indigo-100 flex-shrink-0 border-2 border-[#263B80] bg-[#172033]">
-          <img
-            src={profile.avatar_url || '/profile_photo.png'}
-            alt={profile.full_name}
-            className="w-full h-full object-cover"
-          />
+        <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-[#263B80] to-[#5269C9] text-white flex items-center justify-center font-extrabold text-2xl shadow-lg shadow-indigo-100 flex-shrink-0">
+          HP
         </div>
 
         <div className="text-center sm:text-left space-y-1">

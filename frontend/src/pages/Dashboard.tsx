@@ -99,39 +99,30 @@ export const Dashboard: React.FC = () => {
       {/* 1. WELCOME BANNER */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#263B80] via-[#354ea6] to-[#5269C9] text-white p-6 sm:p-8 shadow-card">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-white/40 shadow-xl shrink-0 bg-[#172033]">
-              <img
-                src={profile.avatar_url || '/profile_photo.png'}
-                alt={profile.full_name}
-                className="w-full h-full object-cover"
-              />
+          <div className="space-y-2">
+            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-medium text-white/90">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>Gyanmanjari Institute of Technology (GMIU) &bull; Department of IT</span>
             </div>
-            <div className="space-y-1.5">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-medium text-white/90">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                <span>Gyanmanjari Institute of Technology (GMIU) &bull; Department of IT</span>
-              </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                Welcome back, {profile.full_name}
-              </h1>
-              <p className="text-xs sm:text-sm text-indigo-100 max-w-2xl leading-relaxed">
-                Cloud Computing Practical Suite (ALA 1–5). Complete all five activities, verify genuine practical evidence, and generate submission-ready university reports.
-              </p>
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+              Welcome back, {profile.full_name}
+            </h1>
+            <p className="text-sm text-indigo-100 max-w-2xl">
+              Cloud Computing Practical Suite (ALA 1–5). Complete all five activities, verify genuine practical evidence, and generate submission-ready university reports.
+            </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-1 text-xs text-indigo-100">
-                <div>
-                  <span className="opacity-75">Enrollment:</span>{' '}
-                  <strong className="font-mono text-white bg-black/20 px-2 py-0.5 rounded">{profile.enrollment_number}</strong>
-                </div>
-                <div>
-                  <span className="opacity-75">Academic Year:</span>{' '}
-                  <strong className="text-white">{profile.academic_year}</strong>
-                </div>
-                <div className="flex items-center space-x-1.5 text-amber-200 font-semibold">
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Deadline: 30 November 2026</span>
-                </div>
+            <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-indigo-100">
+              <div>
+                <span className="opacity-75">Enrollment:</span>{' '}
+                <strong className="font-mono text-white bg-black/20 px-2 py-0.5 rounded">{profile.enrollment_number}</strong>
+              </div>
+              <div>
+                <span className="opacity-75">Academic Year:</span>{' '}
+                <strong className="text-white">{profile.academic_year}</strong>
+              </div>
+              <div className="flex items-center space-x-1.5 text-amber-200 font-semibold">
+                <Calendar className="w-3.5 h-3.5" />
+                <span>Deadline: 30 November 2026</span>
               </div>
             </div>
           </div>

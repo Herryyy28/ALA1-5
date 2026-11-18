@@ -2,8 +2,6 @@
 
 **Student Name:** Herry Prajapati  
 **Enrollment Number:** 20230905090031  
-**Email Address:** `prajapatiherry.28@gmail.com`  
-**Contact Phone:** `+91 7486865058`  
 **Institute:** Gyanmanjari Institute of Technology (GMIU)  
 **Department:** Information Technology  
 **Subject:** Cloud Computing (`IT-CC-2026`)  
