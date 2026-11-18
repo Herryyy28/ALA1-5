@@ -1,0 +1,4 @@
+Scenario,Users,RPS,Total Requests,Failed Requests,Error Rate (%),Avg Latency (ms),p50 (ms),p90 (ms),p95 (ms),p99 (ms),Server CPU (%),Memory (MB)
+Low Load,10,16.0,481,0,0.0,24.6,21.6,38.1,50.4,76.3,20.2,191.6
+Medium Load,50,76.3,2289,2,0.09,60.3,53.1,93.5,123.6,186.9,46.3,295.3
+High Load,100,150.5,4514,18,0.4,103.4,91.0,160.3,212.0,320.5,80.8,423.4

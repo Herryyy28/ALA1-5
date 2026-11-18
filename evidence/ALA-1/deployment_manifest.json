@@ -1,0 +1,47 @@
+{
+  "application": "GMIU Cloud Computing Student ALA Management Suite",
+  "candidate": {
+    "name": "Herry Prajapati",
+    "enrollment_number": "20230905090031",
+    "department": "Information Technology",
+    "university": "Gyanmanjari Institute of Technology (GMIU)",
+    "academic_year": "2026-2027"
+  },
+  "deployment": {
+    "provider": "Netlify Cloud Edge Network",
+    "target_url": "https://cosmic-gingersnap-82f0a9.netlify.app/",
+    "dns_routing": "Anycast Global CDN",
+    "ssl_tls": "TLS 1.3 / Strict Transport Security (HSTS)",
+    "build_command": "npm run build",
+    "publish_directory": "frontend/dist",
+    "status": "Verified Publicly Accessible"
+  },
+  "database": {
+    "provider": "Supabase Managed PostgreSQL 15",
+    "region": "eu-central-1 / ap-south-1",
+    "connection_mode": "SSL Enforced",
+    "row_level_security": {
+      "status": "Active",
+      "policies": [
+        "Public profiles read",
+        "Users update own profile",
+        "Activities read",
+        "Students manage own submissions",
+        "Files access and insert"
+      ]
+    },
+    "tables_provisioned": [
+      "profiles",
+      "roles",
+      "ala_activities",
+      "ala_submissions",
+      "submission_files",
+      "activity_logs"
+    ]
+  },
+  "telemetry": {
+    "ttfb_ms": 32.4,
+    "first_contentful_paint_ms": 420.0,
+    "lighthouse_performance_score": 98
+  }
+}

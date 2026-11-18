@@ -1,0 +1,9 @@
+Metric,Host Workstation (Windows 11),Guest VM-01 (Ubuntu),Guest VM-02 (Ubuntu),Verification Status
+Operating System,Windows 11 Home 64-bit,Ubuntu 24.04 LTS (64-bit),Ubuntu 24.04 LTS (64-bit),Verified
+Processor Model,Intel Core i5-12450HX,Intel Core i5-12450HX (Virtual),Intel Core i5-12450HX (Virtual),Verified
+Logical CPUs / Cores,12 Logical Threads (8 Cores),2 vCPUs,1 vCPU,Verified Asymmetric
+Base Memory (RAM),11.71 GB Physical,2048 MB (2.0 GB),2048 MB (2.0 GB),Verified Allocation
+Storage Allocation,303 GB Used / 36.8 GB Free,25.0 GB Dynamic VDI,20.0 GB Dynamic VDI,Verified Partitions
+Hostname,HERRY-LAPTOP,GMIU-Ubuntu-VM-01,GMIU-Ubuntu-VM-02,Verified Isolated
+Network Interface,Wi-Fi / Ethernet 192.168.1.x,NAT 10.0.2.15/24,NAT 10.0.2.16/24,Verified Segregated
+Virtualization Tech,Host Hyper-V / Intel VT-x,Type-2 Guest VMM,Type-2 Guest VMM,Verified

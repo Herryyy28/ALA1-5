@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+  <rect width="800" height="400" fill="#F7F8FC" rx="16"/>
+  <rect x="0" y="0" width="800" height="40" fill="#263B80" rx="16"/>
+  <text x="400" y="26" fill="#FFFFFF" font-family="sans-serif" font-weight="bold" font-size="14" text-anchor="middle">ALA 2: Oracle VirtualBox Multi-VM Architecture</text>
+  
+  <!-- Host Layer -->
+  <rect x="50" y="290" width="700" height="60" fill="#172033" rx="8"/>
+  <text x="400" y="325" fill="#FFFFFF" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">Host Hardware: 12th Gen Intel Core i5-12450HX (8C/12T) &bull; 12.0 GB RAM &bull; Windows 11 Home 64-bit</text>
+
+  <!-- Hypervisor Layer -->
+  <rect x="50" y="210" width="700" height="50" fill="#263B80" rx="8"/>
+  <text x="400" y="240" fill="#FFFFFF" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">Type-2 Hypervisor: Oracle VirtualBox 7.x (Virtual Machine Monitor / VMM)</text>
+
+  <!-- Guest VM 1 -->
+  <rect x="80" y="70" width="300" height="110" fill="#FFFFFF" stroke="#5269C9" stroke-width="2" rx="10"/>
+  <text x="230" y="100" fill="#263B80" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">GMIU-Ubuntu-VM-01</text>
+  <text x="230" y="120" fill="#56627A" font-family="sans-serif" font-size="10" text-anchor="middle">vCPU: 2 Cores | RAM: 2048 MB (2 GB)</text>
+  <text x="230" y="135" fill="#56627A" font-family="sans-serif" font-size="10" text-anchor="middle">Storage: 25.0 GB Dynamic VDI</text>
+  <text x="230" y="150" fill="#16865B" font-family="sans-serif" font-weight="bold" font-size="10" text-anchor="middle">NAT IP: 10.0.2.15/24</text>
+
+  <!-- Guest VM 2 -->
+  <rect x="420" y="70" width="300" height="110" fill="#FFFFFF" stroke="#5269C9" stroke-width="2" rx="10"/>
+  <text x="570" y="100" fill="#263B80" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">GMIU-Ubuntu-VM-02</text>
+  <text x="570" y="120" fill="#56627A" font-family="sans-serif" font-size="10" text-anchor="middle">vCPU: 1 Core | RAM: 2048 MB (2 GB)</text>
+  <text x="570" y="135" fill="#56627A" font-family="sans-serif" font-size="10" text-anchor="middle">Storage: 20.0 GB Dynamic VDI</text>
+  <text x="570" y="150" fill="#16865B" font-family="sans-serif" font-weight="bold" font-size="10" text-anchor="middle">NAT IP: 10.0.2.16/24</text>
+</svg>

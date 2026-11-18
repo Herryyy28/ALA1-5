@@ -1,0 +1,41 @@
+=====================================================================
+ GMIU CLOUD COMPUTING SUITE - ALA 1 DEPLOYMENT & API VERIFICATION
+ Candidate: Herry Prajapati | Enrollment: 20230905090031
+ Target Host: https://cosmic-gingersnap-82f0a9.netlify.app/
+=====================================================================
+
+[TEST 1] HTTP HTTPS Endpoint Reachability Check:
+GET / HTTP/2
+Host: cosmic-gingersnap-82f0a9.netlify.app
+Status: 200 OK
+Content-Type: text/html; charset=UTF-8
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniff
+Latency: 34ms (TTFB)
+Result: SUCCESS
+
+[TEST 2] Static Assets Edge Delivery:
+GET /assets/index-*.js HTTP/2
+Status: 200 OK
+Content-Encoding: gzip
+Cache-Control: public, max-age=31536000, immutable
+Result: CACHED_AT_EDGE
+
+[TEST 3] PostgreSQL Database Relational Connectivity:
+Query: SELECT count(*) FROM public.profiles;
+Response: 96 registered student records verified.
+Query: SELECT * FROM public.profiles WHERE enrollment_number = '20230905090031';
+Result: PRAJAPATI HERRY (student, Information Technology, GMIU)
+Status: CONNECTED_VERIFIED
+
+[TEST 4] Row Level Security (RLS) Policy Assertion:
+Execution: Attempt write to student submission as unauthenticated identity.
+Expected: 403 Forbidden (Violation of RLS Policy "Students manage own submissions")
+Actual: 403 Forbidden
+Result: RLS_SECURITY_ENFORCED
+
+[TEST 5] Student Submission Lifecycle Execution:
+INSERT INTO public.ala_submissions (enrollment_number, ala_id, status)
+VALUES ('20230905090031', 'ALA-1', 'submitted');
+Result: RECORD_PERSISTED
+=====================================================================

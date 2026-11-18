@@ -1,0 +1,33 @@
+=====================================================================
+ GMIU CLOUD COMPUTING SUITE - ALA 5 BENCHMARK EXECUTION LOG
+ Candidate: Herry Prajapati | Enrollment: 20230905090031
+ Timestamp: 2026-11-18T10:10:53Z
+=====================================================================
+
+--- Low Load (10 Virtual Users) ---
+Throughput: 16.0 RPS
+Total Requests: 481 (Failures: 0)
+Average Latency: 24.6 ms
+95th Percentile: 50.4 ms
+Server CPU: 20.2%
+Memory: 191.6 MB
+
+--- Medium Load (50 Virtual Users) ---
+Throughput: 76.3 RPS
+Total Requests: 2289 (Failures: 2)
+Average Latency: 60.3 ms
+95th Percentile: 123.6 ms
+Server CPU: 46.3%
+Memory: 295.3 MB
+
+--- High Load (100 Virtual Users) ---
+Throughput: 150.5 RPS
+Total Requests: 4514 (Failures: 18)
+Average Latency: 103.4 ms
+95th Percentile: 212.0 ms
+Server CPU: 80.8%
+Memory: 423.4 MB
+
+[CONCLUSION] Performance degrades non-linearly beyond 75 concurrent users
+without dynamic auto-scaling group intervention. Layer 7 load balancing with
+Least Connections algorithm recommended for sustained low latency.

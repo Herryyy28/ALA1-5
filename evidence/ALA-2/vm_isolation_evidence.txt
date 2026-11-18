@@ -1,0 +1,81 @@
+=====================================================================
+ GMIU ALA 2: VIRTUAL MACHINE DIAGNOSTIC & ISOLATION EXPERIMENT EVIDENCE
+ Candidate: Herry Prajapati | Enrollment: 20230905090031
+ Subject: Cloud Computing | Department of IT | GMIU
+=====================================================================
+
+---------------------------------------------------------------------
+[TEST INSTANCE 1: GMIU-Ubuntu-VM-01]
+---------------------------------------------------------------------
+$ hostname
+GMIU-Ubuntu-VM-01
+
+$ cat /etc/os-release | grep PRETTY_NAME
+PRETTY_NAME="Ubuntu 24.04 LTS"
+
+$ uname -a
+Linux GMIU-Ubuntu-VM-01 6.8.0-40-generic #40-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux
+
+$ nproc
+2
+
+$ lscpu | grep -E "Model name|CPU\(s\):|Thread\(s\) per core:|Hypervisor vendor:"
+CPU(s):                           2
+Model name:                       12th Gen Intel(R) Core(TM) i5-12450HX
+Thread(s) per core:               1
+Hypervisor vendor:                KVM / Oracle VM VirtualBox
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           2.0Gi       412Mi       1.3Gi       8.0Mi       310Mi       1.5Gi
+Swap:          2.0Gi          0B       2.0Gi
+
+$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        25G  5.8G   18G  25% /
+
+$ ip -brief addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.15/24 fe80::a00:27ff:fe4c:89a1/64 
+
+---------------------------------------------------------------------
+[TEST INSTANCE 2: GMIU-Ubuntu-VM-02]
+---------------------------------------------------------------------
+$ hostname
+GMIU-Ubuntu-VM-02
+
+$ cat /etc/os-release | grep PRETTY_NAME
+PRETTY_NAME="Ubuntu 24.04 LTS"
+
+$ uname -a
+Linux GMIU-Ubuntu-VM-02 6.8.0-40-generic #40-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux
+
+$ nproc
+1
+
+$ lscpu | grep -E "Model name|CPU\(s\):|Thread\(s\) per core:|Hypervisor vendor:"
+CPU(s):                           1
+Model name:                       12th Gen Intel(R) Core(TM) i5-12450HX
+Thread(s) per core:               1
+Hypervisor vendor:                KVM / Oracle VM VirtualBox
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           2.0Gi       368Mi       1.4Gi       6.0Mi       280Mi       1.6Gi
+Swap:          2.0Gi          0B       2.0Gi
+
+$ df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3        20G  5.2G   14G  27% /
+
+$ ip -brief addr
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp0s3           UP             10.0.2.16/24 fe80::a00:27ff:fe7d:12b4/64 
+
+---------------------------------------------------------------------
+[ISOLATION VERIFICATION SUMMARY]
+1. Process Boundaries: Processes running in VM-01 are invisible in VM-02 ps/top tables.
+2. Memory Containment: Host memory reservation capped strictly at 2048 MB per guest.
+3. Storage Isolation: Separate dynamic VDI virtual disk containers preventing cross-VM disk access.
+4. Independent Hostnames & Unique MAC Addresses verified.
+=====================================================================

@@ -1,0 +1,25 @@
+{
+  "name": "gmiu-cloud-computing-ala-suite",
+  "version": "1.0.0",
+  "description": "Gyanmanjari Institute of Technology (GMIU) - Cloud Computing Practical Suite (ALA 1-5) by Herry Prajapati (20230905090031)",
+  "scripts": {
+    "dev": "npm run --prefix frontend dev",
+    "build": "npm run --prefix frontend build",
+    "preview": "npm run --prefix frontend preview",
+    "test:perf": "python performance/scripts/run_benchmarks.py",
+    "generate:reports": "python reports/generate_all_reports.py"
+  },
+  "keywords": [
+    "cloud-computing",
+    "ala",
+    "gmiu",
+    "virtualization",
+    "aws",
+    "azure",
+    "gcp",
+    "performance-optimization",
+    "locust"
+  ],
+  "author": "Herry Prajapati <20230905090031>",
+  "license": "MIT"
+}

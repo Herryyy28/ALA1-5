@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ALA status | Gyanmanjari Innovative University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6fb;--surface:#fff;--ink:#14213d;--muted:#56627a;--line:#d5dcea;--accent:#2b3a8c;--accent-ink:#fff;--ok:#0f6b3f;--ok-bg:#dff3e7;--no:#8a4b00;--no-bg:#fdeccf;--err:#a3262a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1526;--surface:#18203a;--ink:#e8ecf8;--muted:#a1abc6;--line:#2c3657;--accent:#8e9cff;--accent-ink:#0f1526;--ok:#7fe0aa;--ok-bg:#133a28;--no:#ffc57a;--no-bg:#3d2a0e;--err:#ff8c8f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1526;--surface:#18203a;--ink:#e8ecf8;--muted:#a1abc6;--line:#2c3657;--accent:#8e9cff;--accent-ink:#0f1526;--ok:#7fe0aa;--ok-bg:#133a28;--no:#ffc57a;--no-bg:#3d2a0e;--err:#ff8c8f;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 1rem/1.55 "Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;padding:clamp(1.25rem,6vw,4rem) 1rem}
+main{width:100%;max-width:34rem}
+.univ{margin:0 0 .5rem;color:var(--muted);font-size:.9rem;font-weight:500}
+h1{margin:0 0 .6rem;font:700 clamp(1.9rem,6.5vw,2.6rem)/1.08 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em}
+.lead{margin:0 0 1.6rem;color:var(--muted);max-width:30rem}
+label{display:block;font-weight:600;margin-bottom:.4rem}
+.row{display:flex;gap:.6rem}
+input{flex:1;min-width:0;font:inherit;font-size:1.05rem;padding:.8rem .9rem;border:2px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
+input::placeholder{color:var(--muted);opacity:.8}
+button{font:600 1rem "Public Sans",system-ui,sans-serif;padding:.8rem 1.3rem;border:0;border-radius:10px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+button:hover{filter:brightness(1.08)}
+input:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{margin:.5rem 0 0;font-size:.85rem;color:var(--muted)}
+#out{margin-top:1.8rem}
+.err{color:var(--err);font-weight:500;margin:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.head{padding:1.1rem 1.2rem;border-bottom:1px solid var(--line)}
+.name{margin:0;font:700 1.3rem/1.2 "Bricolage Grotesque",system-ui,sans-serif}
+.sum{margin:.25rem 0 0;color:var(--muted)}
+.sum b{color:var(--ink)}
+ul{list-style:none;margin:0;padding:0}
+li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.85rem 1.2rem;border-bottom:1px solid var(--line)}
+li:last-child{border-bottom:0}
+.chip{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .7rem;border-radius:999px;font-weight:600;font-size:.88rem;white-space:nowrap}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
+.chip.no{background:var(--no-bg);color:var(--no)}
+.note{margin:1rem 0 0;font-size:.9rem;color:var(--muted)}
+.deadline{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem .9rem;margin:0 0 1.6rem;padding:.9rem 1.1rem;background:var(--no-bg);border:2px solid var(--no);border-left-width:8px;border-radius:10px;color:var(--ink)}
+.dl-label{font-weight:500}
+.deadline strong{font:700 1.5rem/1.1 "Bricolage Grotesque",system-ui,sans-serif;color:var(--no)}
+.note.due{padding:.8rem 1rem;background:var(--no-bg);border-left:5px solid var(--no);border-radius:8px;color:var(--ink);font-weight:600}
+.foot{margin:2.4rem 0 0;font-size:.82rem;color:var(--muted)}
+@media (max-width:26rem){.row{flex-direction:column}button{width:100%}}
+@media (prefers-reduced-motion:no-preference){#out>*{animation:in .18s ease-out}@keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<main>
+<p class="univ">Gyanmanjari Innovative University</p>
+<h1>Check your ALA status</h1>
+<p class="lead">Enter your enrollment number to see which of your 5 ALAs are submitted. Marks are not shown here.</p>
+<p class="deadline"><span class="dl-label">Last date to submit</span><strong>30 Nov 2026</strong></p>
+<form id="f" autocomplete="off" novalidate>
+<label for="en">Enrollment number</label>
+<div class="row">
+<input id="en" inputmode="numeric" placeholder="e.g. 20230905090529" aria-describedby="hint">
+<button type="submit">Check status</button>
+</div>
+<p class="hint" id="hint">Numbers only. A # at the start is fine.</p>
+</form>
+<div id="out" aria-live="polite"></div>
+<p class="foot">Status updated on 17 Nov 2026. If your status looks wrong, contact your faculty.</p>
+</main>
+<script>
+var D=[{"id":"20230905080001","n":"VEKARIYA HETVIBEN","s":"00000"},{"id":"20230905080002","n":"SACHAPARA URSHIT","s":"00000"},{"id":"20230905090001","n":"SONANI ZEEL","s":"11111"},{"id":"20230905090002","n":"GABANI BANSI","s":"00000"},{"id":"20230905090003","n":"DHOLAKIYA KRISHNA","s":"00000"},{"id":"20230905090005","n":"PATEL JENIL","s":"00000"},{"id":"20230905090006","n":"PARMAR DHRUVRAJSINH","s":"11111"},{"id":"20230905090007","n":"VAGHELA DHRUV","s":"00000"},{"id":"20230905090008","n":"GHORI VANSHVI","s":"10100"},{"id":"20230905090009","n":"CHAUHAN CHIRAGBHAI","s":"00000"},{"id":"20230905090010","n":"SHEIKH AAKIB","s":"00000"},{"id":"20230905090011","n":"SHEIKH MOHMEDSAMI","s":"00000"},{"id":"20230905090012","n":"CHAVDA ANIKET","s":"00000"},{"id":"20230905090013","n":"VAGHANI HENIL","s":"00000"},{"id":"20230905090014","n":"JADAV SANJAY","s":"00000"},{"id":"20230905090015","n":"JETANI NIKHILESH","s":"11111"},{"id":"20230905090017","n":"MAKWANA JAINISHA","s":"00000"},{"id":"20230905090018","n":"GONDALIYA KRISHNA","s":"00000"},{"id":"20230905090019","n":"BAGDA ASMITA","s":"00000"},{"id":"20230905090020","n":"ARCHI JITUBHAI","s":"11111"},{"id":"20230905090021","n":"KUKADIYA MIT","s":"00000"},{"id":"20230905090022","n":"MAHETAR VAHIDBHAI","s":"00000"},{"id":"20230905090023","n":"DANGAR PARAM","s":"00000"},{"id":"20230905090025","n":"RAJVEER MUKESHBHAI","s":"00000"},{"id":"20230905090026","n":"VAGHASIYA SMIT","s":"00000"},{"id":"20230905090028","n":"DAVE NIRMIT","s":"00000"},{"id":"20230905090029","n":"SACHAPARA KHUSHI","s":"11111"},{"id":"20230905090030","n":"SOLANKI VEDANT","s":"00000"},{"id":"20230905090031","n":"PRAJAPATI HERRY","s":"00000"},{"id":"20230905090038","n":"SOLANKI PARTH","s":"00000"},{"id":"20230905090039","n":"NAYANI MAHMADHADI","s":"00100"},{"id":"20230905090040","n":"ZALA HARSHDEEPSINH","s":"11111"},{"id":"20230905090041","n":"NARIGARA SACHIN","s":"00000"},{"id":"20230905090042","n":"KHASIYA DHAVAL","s":"00000"},{"id":"20230905090044","n":"MAKWANA DHRUV","s":"00000"},{"id":"20230905090045","n":"BAVALIYA CHETAN","s":"11111"},{"id":"20230905090046","n":"ZA ANSHI","s":"00000"},{"id":"20230905090047","n":"MEHTA BHAVY","s":"00000"},{"id":"20230905090048","n":"JADEJA DHRUVRAJSINH","s":"00000"},{"id":"20230905090049","n":"PONDA DHRUV","s":"00000"},{"id":"20230905090050","n":"DODIYA SIDDHARTH","s":"00000"},{"id":"20230905090051","n":"VEGAD BRIJRAJ","s":"00000"},{"id":"20230905090052","n":"MEET ASHOKBHAI","s":"10010"},{"id":"20230905090053","n":"KANANI SHUBHAM","s":"00000"},{"id":"20230905090054","n":"MORI MANDIPBHAI","s":"00000"},{"id":"20230905090056","n":"GOHIL HARSHRAJSINH","s":"00000"},{"id":"20230905090058","n":"VAGHASIYA RIDHAMKUMAR","s":"00000"},{"id":"20230905090060","n":"GOHIL RUSHIRAJSINH","s":"10000"},{"id":"20230905090061","n":"UPADHYAY JAIMIN","s":"00000"},{"id":"20230905090501","n":"JOSHI GARIMA","s":"11111"},{"id":"20230905090502","n":"AKSHAR SNEHALBHAI","s":"11111"},{"id":"20230905090503","n":"UTSAV JASMINBHAI","s":"11111"},{"id":"20230905090504","n":"VALIYA KHUSHALI","s":"11111"},{"id":"20230905090505","n":"BHATT SHREYAS","s":"11111"},{"id":"20230905090506","n":"KAKDIYA SUNNY","s":"00011"},{"id":"20230905090507","n":"HEET NILESHBHAI","s":"00000"},{"id":"20230905090508","n":"KUKADIYA OM","s":"11111"},{"id":"20230905090509","n":"KUKADIYA DEEP","s":"00011"},{"id":"20230905090510","n":"SATHIYA NISHIT","s":"11111"},{"id":"20230905090511","n":"MAKWANA RAJDIPBHAI","s":"11100"},{"id":"20230905090512","n":"JOSHI MANAVKUMAR","s":"00000"},{"id":"20230905090513","n":"KANKOTIYA VED","s":"00000"},{"id":"20230905090514","n":"MAHEK GAFFARBHAI","s":"00000"},{"id":"20230905090515","n":"HEMAL HARSHADBHAI","s":"00000"},{"id":"20230905090516","n":"RATHOD MANDIPSINH","s":"11111"},{"id":"20230905090517","n":"BHADIYADRA PRINCE","s":"00000"},{"id":"20230905090518","n":"DOSHI MANSI","s":"11111"},{"id":"20230905090519","n":"GOHIL MAYURSINH","s":"00000"},{"id":"20230905090520","n":"GOHIL NIDHIBA","s":"10110"},{"id":"20230905090521","n":"NAVADIYA DIYA","s":"00000"},{"id":"20230905090522","n":"RAJ JAYESHBHAI","s":"11111"},{"id":"20230905090523","n":"VAGHASIYA PRINCI","s":"00000"},{"id":"20230905090524","n":"BAROT RAJ","s":"11111"},{"id":"20230905090525","n":"DHANDHALYA HIREN","s":"00000"},{"id":"20230905090526","n":"ODHVANI DIPAK","s":"00000"},{"id":"20230905090527","n":"KHUNT MEET","s":"00000"},{"id":"20230905090528","n":"GOLAKIYA GRISHA","s":"11111"},{"id":"20230905090529","n":"SOMANI TIRTH","s":"11011"},{"id":"240905081001","n":"DALSANIYA MANN","s":"00000"},{"id":"240905091002","n":"BILAKHIYA FARHAN","s":"00000"},{"id":"240905091003","n":"CHUDASAMA DISHANT","s":"00000"},{"id":"240905091008","n":"JOSHI HIMANSHU","s":"11111"},{"id":"240905091009","n":"JOSHI SARTHAK","s":"11111"},{"id":"240905091010","n":"MAKWANA VAIBHAV","s":"00000"},{"id":"240905091011","n":"MEVADA PARIKSHIT","s":"00000"},{"id":"240905091012","n":"NAVAPARA ANSHUL","s":"00000"},{"id":"240905091013","n":"PARMAR DHARMIK","s":"00000"},{"id":"240905091014","n":"PARMAR PARTH","s":"00000"},{"id":"240905091015","n":"PARMAR VISHVABEN","s":"11111"},{"id":"240905091016","n":"RAJYAGURU JAIMIN","s":"00000"},{"id":"240905091017","n":"RAMNANI NIRAJ","s":"00000"},{"id":"240905091018","n":"VAJA DHARMIK","s":"00000"},{"id":"240905091019","n":"VORA DIYA","s":"00000"},{"id":"240905091020","n":"KANADA TIRTH","s":"00000"},{"id":"240905091021","n":"MAKWANA SNEHA","s":"00000"},{"id":"240905091901","n":"JETHAVA DHRUVINBHAI","s":"00000"}];
+var idx={};D.forEach(function(d){idx[d.id]=d});
+var out=document.getElementById('out'),inp=document.getElementById('en');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function show(e){
+ e.preventDefault();
+ var q=inp.value.replace(/\D/g,'');
+ if(!q){out.innerHTML='<p class="err">Enter your enrollment number to continue.</p>';return}
+ var d=idx[q];
+ if(!d){out.innerHTML='<p class="err">No student found for this enrollment number. Check the number and try again.</p>';return}
+ var n=(d.s.match(/1/g)||[]).length,rows='';
+ for(var i=0;i<5;i++){
+  var ok=d.s[i]==='1';
+  rows+='<li><span>ALA '+(i+1)+'</span><span class="chip '+(ok?'ok':'no')+'">'+(ok?'&#10003; Submitted':'&#9888; Not submitted')+'</span></li>';
+ }
+ out.innerHTML='<div class="card"><div class="head"><p class="name">'+esc(d.n)+'</p><p class="sum"><b>'+n+' of 5</b> ALAs submitted</p></div><ul>'+rows+'</ul></div>'+
+  (n<5?'<p class="note due">Submit the pending '+(5-n===1?'ALA':'ALAs')+' before 30 Nov 2026.</p>':'<p class="note">All 5 ALAs are submitted.</p>');
+}
+document.getElementById('f').addEventListener('submit',show);
+</script>
+</body>
+</html>
