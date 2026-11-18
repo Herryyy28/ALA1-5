@@ -1,0 +1,52 @@
+version: '3.8'
+
+# GMIU Cloud Computing ALA 2: Multi-Container Isolation & Resource Quota Topology
+# Demonstrating network isolation, vCPU quota throttling, and memory ceiling limits
+
+services:
+  # Node 1: Web / Application Tier Container
+  gmiu-web-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gmiu-ubuntu-container-01
+    hostname: ubuntu-web-01
+    networks:
+      gmiu_virtual_net:
+        ipv4_address: 172.20.0.10
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    command: /bin/bash -c "echo '[GMIU-CONTAINER-01] Web Node Online' && tail -f /dev/null"
+
+  # Node 2: Database / Storage Tier Container
+  gmiu-db-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gmiu-ubuntu-container-02
+    hostname: ubuntu-db-02
+    networks:
+      gmiu_virtual_net:
+        ipv4_address: 172.20.0.20
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    command: /bin/bash -c "echo '[GMIU-CONTAINER-02] DB Node Online' && tail -f /dev/null"
+
+networks:
+  gmiu_virtual_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24

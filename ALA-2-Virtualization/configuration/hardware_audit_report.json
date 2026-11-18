@@ -1,0 +1,26 @@
+﻿{
+    "StudentName":  "Herry Prajapati",
+    "EnrollmentNumber":  "20230905090031",
+    "AuditTimestamp":  "2026-11-18T10:09:22Z",
+    "HostOS":  "Microsoft Windows 11 Home Single Language (64-bit, Version: 10.0.26300)",
+    "TotalMemoryGB":  11.71,
+    "FreeMemoryGB":  1.13,
+    "Processor":  "12th Gen Intel(R) Core(TM) i5-12450HX",
+    "PhysicalCores":  8,
+    "LogicalProcessors":  12,
+    "VirtualizationFirmwareEnabled":  false,
+    "VirtualBoxInstalled":  false,
+    "VirtualBoxPath":  "",
+    "StorageDrives":  [
+                          {
+                              "Name":  "C",
+                              "FreeGB":  36.87,
+                              "UsedGB":  303.28
+                          },
+                          {
+                              "Name":  "D",
+                              "FreeGB":  115.93,
+                              "UsedGB":  18.64
+                          }
+                      ]
+}

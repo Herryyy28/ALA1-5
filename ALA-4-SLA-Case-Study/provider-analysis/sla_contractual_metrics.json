@@ -1,0 +1,61 @@
+{
+  "case_study": "Comparative Study of AWS, Azure, and GCP SLAs",
+  "candidate": "Herry Prajapati (20230905090031)",
+  "subject": "Cloud Computing (2026-2027)",
+  "services": [
+    {
+      "service_name": "Multi-AZ Compute Instances",
+      "aws": {
+        "service": "Amazon EC2 (Multi-AZ)",
+        "uptime_commitment": "99.99%",
+        "permitted_downtime_monthly_minutes": 4.32,
+        "service_credits": [
+          { "threshold": "< 99.99%", "credit_pct": 10 },
+          { "threshold": "< 99.00%", "credit_pct": 30 },
+          { "threshold": "< 95.00%", "credit_pct": 100 }
+        ]
+      },
+      "azure": {
+        "service": "Azure Virtual Machines (Multi-AZ)",
+        "uptime_commitment": "99.99%",
+        "permitted_downtime_monthly_minutes": 4.32,
+        "service_credits": [
+          { "threshold": "< 99.99%", "credit_pct": 10 },
+          { "threshold": "< 99.00%", "credit_pct": 25 },
+          { "threshold": "< 95.00%", "credit_pct": 100 }
+        ]
+      },
+      "gcp": {
+        "service": "Compute Engine (Multi-Zone)",
+        "uptime_commitment": "99.99%",
+        "permitted_downtime_monthly_minutes": 4.32,
+        "service_credits": [
+          { "threshold": "< 99.99%", "credit_pct": 10 },
+          { "threshold": "< 99.00%", "credit_pct": 25 },
+          { "threshold": "< 95.00%", "credit_pct": 50 }
+        ]
+      }
+    },
+    {
+      "service_name": "Object Storage",
+      "aws": {
+        "service": "Amazon S3 Standard",
+        "uptime_commitment": "99.90%",
+        "durability_commitment": "99.999999999% (11 9s)",
+        "permitted_downtime_monthly_minutes": 43.2
+      },
+      "azure": {
+        "service": "Azure Blob Storage (Hot GRS)",
+        "uptime_commitment": "99.90%",
+        "durability_commitment": "99.99999999999999% (16 9s)",
+        "permitted_downtime_monthly_minutes": 43.2
+      },
+      "gcp": {
+        "service": "Cloud Storage (Multi-Region)",
+        "uptime_commitment": "99.95%",
+        "durability_commitment": "99.999999999% (11 9s)",
+        "permitted_downtime_monthly_minutes": 21.6
+      }
+    }
+  ]
+}

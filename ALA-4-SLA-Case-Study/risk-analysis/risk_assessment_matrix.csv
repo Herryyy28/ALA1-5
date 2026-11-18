@@ -1,0 +1,9 @@
+Risk ID,Hazard Scenario,Likelihood (1-5),Consequence (1-5),Risk Score,Severity Tier,Recommended Architecture Mitigation
+R-01,Regional Cloud Provider Blackout,2,5,10,High,Multi-Region Active-Active with Route 53 DNS Failover (99.9999% SLA)
+R-02,Object Storage Accidental Deletion / Ransomware,2,5,10,High,S3 Object Lock (WORM Mode) + Versioning + MFA Delete
+R-03,IAM Root / Admin Credential Exfiltration,3,5,15,Critical,Mandatory FIDO2 Hardware MFA + Zero Permanent Access Keys
+R-04,Distributed Denial of Service (DDoS L7 Volumetric),4,3,12,High,AWS Shield Advanced / Cloud Armor + Anycast CloudFront Edge CDN
+R-05,Cross-Zone / Egress Bandwidth Cost Shock,4,3,12,High,VPC Endpoints (PrivateLink) + Inter-Region Egress Budget Alarms
+R-06,Vendor Lock-In & Proprietary API Entanglement,4,3,12,High,Containerized microservices (Docker/K8s) + OpenTofu/Terraform IaC
+R-07,Regulatory GDPR / DPDP Cross-Border Violation,2,5,10,High,Data Residency Service Control Policies (SCPs) restricting allowed regions
+R-08,Unpatched IaaS Virtual Machine OS Zero-Day,3,4,12,High,AWS Systems Manager Patch Manager + Immutable AMI Golden Images

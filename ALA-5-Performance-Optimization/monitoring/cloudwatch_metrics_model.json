@@ -1,0 +1,54 @@
+{
+  "CloudWatchMonitoringConfiguration": {
+    "Namespace": "GMIU/CloudPerformanceSuite",
+    "Candidate": "Herry Prajapati (20230905090031)",
+    "Subject": "Cloud Computing ALA 5",
+    "Metrics": [
+      {
+        "MetricName": "CPUUtilization",
+        "Unit": "Percent",
+        "Statistic": "Average",
+        "PeriodSeconds": 60,
+        "AlarmThresholdHigh": 75.0,
+        "AlarmThresholdLow": 25.0,
+        "EvaluationPeriods": 2,
+        "ActionScaling": {
+          "ScaleOutStep": "+2 Instances",
+          "ScaleInStep": "-1 Instance",
+          "CooldownSeconds": 300
+        }
+      },
+      {
+        "MetricName": "TargetResponseTime",
+        "Unit": "Milliseconds",
+        "Statistic": "p95",
+        "PeriodSeconds": 60,
+        "AlarmThresholdHigh": 250.0,
+        "EvaluationPeriods": 3
+      },
+      {
+        "MetricName": "HTTPCode_Target_5XX_Count",
+        "Unit": "Count",
+        "Statistic": "Sum",
+        "PeriodSeconds": 60,
+        "AlarmThresholdHigh": 5,
+        "EvaluationPeriods": 1
+      },
+      {
+        "MetricName": "RequestCountPerTarget",
+        "Unit": "Count/Second",
+        "Statistic": "Average",
+        "PeriodSeconds": 60,
+        "TargetTrackingValue": 120.0
+      }
+    ],
+    "AutoScalingGroup": {
+      "AutoScalingGroupName": "asg-gmiu-web-production",
+      "MinSize": 2,
+      "MaxSize": 10,
+      "DesiredCapacity": 2,
+      "HealthCheckType": "ELB",
+      "HealthCheckGracePeriod": 300
+    }
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+    "CPUs":  1,
+    "OSType":  "Ubuntu_64",
+    "MemoryMB":  2048,
+    "Name":  "GMIU-Ubuntu-VM-02",
+    "DiskSizeMB":  20480,
+    "VRAM":  16,
+    "Description":  "Secondary isolated compute instance for Cloud Computing ALA 2",
+    "Network":  "NAT"
+}

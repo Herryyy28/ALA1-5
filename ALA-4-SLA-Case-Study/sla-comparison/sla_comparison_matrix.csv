@@ -1,0 +1,10 @@
+Provider,Service_Type,Deployment_Model,Target_SLA_Percent,Permissible_Monthly_Downtime,Credit_Tier_1,Credit_Tier_2,Credit_Tier_3,Claim_Window_Days
+AWS,Compute (EC2),Multi-AZ Instances,99.99%,4m 23s,10% (<99.99%),25% (<99.0%),100% (<95.0%),30 Days
+AWS,Storage (S3 Standard),Multi-AZ Standard,99.90%,43m 49s,10% (<99.9%),25% (<99.0%),100% (<95.0%),30 Days
+AWS,Database (RDS Multi-AZ),Multi-AZ Clustering,99.95%,21m 55s,10% (<99.95%),25% (<99.0%),100% (<95.0%),30 Days
+Azure,Compute (Virtual Machines),Availability Zones,99.99%,4m 23s,10% (<99.99%),25% (<99.0%),100% (<95.0%),60 Days
+Azure,Storage (Blob Storage GRS),Geo-Redundant Storage,99.99%,4m 23s,10% (<99.99%),25% (<99.0%),100% (<95.0%),60 Days
+Azure,Database (SQL DB Business Critical),Multi-Zone Replica,99.995%,2m 11s,10% (<99.995%),25% (<99.0%),100% (<95.0%),60 Days
+GCP,Compute (Compute Engine),Multi-Zone VMs,99.99%,4m 23s,10% (<99.99%),25% (<99.0%),50% (<95.0%),30 Days
+GCP,Storage (Cloud Storage Multi-Region),Dual / Multi-Region,99.95%,21m 55s,10% (<99.95%),25% (<99.0%),50% (<95.0%),30 Days
+GCP,Database (Cloud Spanner Multi-Region),Multi-Region High Avail,99.999%,26s,10% (<99.999%),25% (<99.0%),50% (<95.0%),30 Days

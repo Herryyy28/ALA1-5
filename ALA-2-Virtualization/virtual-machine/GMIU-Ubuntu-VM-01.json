@@ -1,0 +1,10 @@
+﻿{
+    "CPUs":  2,
+    "OSType":  "Ubuntu_64",
+    "MemoryMB":  2048,
+    "Name":  "GMIU-Ubuntu-VM-01",
+    "DiskSizeMB":  25600,
+    "VRAM":  16,
+    "Description":  "Primary compute instance for Cloud Computing ALA 2",
+    "Network":  "NAT"
+}

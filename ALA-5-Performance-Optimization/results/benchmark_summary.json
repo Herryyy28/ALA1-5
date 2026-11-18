@@ -1,0 +1,71 @@
+{
+  "low_load": {
+    "scenario": "Low Load",
+    "users": 10,
+    "spawn_rate": 2,
+    "duration_sec": 30,
+    "total_requests": 481,
+    "failed_requests": 0,
+    "error_rate_pct": 0.0,
+    "requests_per_second": 16.0,
+    "latency_ms": {
+      "avg": 24.6,
+      "min": 11.1,
+      "max": 128.3,
+      "p50": 21.6,
+      "p90": 38.1,
+      "p95": 50.4,
+      "p99": 76.3
+    },
+    "server_telemetry": {
+      "cpu_utilization_pct": 20.2,
+      "memory_usage_mb": 191.6
+    }
+  },
+  "medium_load": {
+    "scenario": "Medium Load",
+    "users": 50,
+    "spawn_rate": 5,
+    "duration_sec": 30,
+    "total_requests": 2289,
+    "failed_requests": 2,
+    "error_rate_pct": 0.09,
+    "requests_per_second": 76.3,
+    "latency_ms": {
+      "avg": 60.3,
+      "min": 27.1,
+      "max": 378.3,
+      "p50": 53.1,
+      "p90": 93.5,
+      "p95": 123.6,
+      "p99": 186.9
+    },
+    "server_telemetry": {
+      "cpu_utilization_pct": 46.3,
+      "memory_usage_mb": 295.3
+    }
+  },
+  "high_load": {
+    "scenario": "High Load",
+    "users": 100,
+    "spawn_rate": 10,
+    "duration_sec": 30,
+    "total_requests": 4514,
+    "failed_requests": 18,
+    "error_rate_pct": 0.4,
+    "requests_per_second": 150.5,
+    "latency_ms": {
+      "avg": 103.4,
+      "min": 46.5,
+      "max": 684.3,
+      "p50": 91.0,
+      "p90": 160.3,
+      "p95": 212.0,
+      "p99": 320.5
+    },
+    "server_telemetry": {
+      "cpu_utilization_pct": 80.8,
+      "memory_usage_mb": 423.4
+    }
+  }
+}
